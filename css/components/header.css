@@ -1,3 +1,9 @@
+header {
+    background-color: var(--brand);
+    height: 65px;
+
+}
+
 .main-header {
     height: 100%;
 }

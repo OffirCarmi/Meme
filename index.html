@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="flex col space-between">
+<body class="flex col space-between" onload="onInit()">
 
     <header>
         <div class="main-header main-layout flex space-between align-center">
@@ -22,21 +22,45 @@
 
     </header>
 
-    <main>
-        <section class="gallery main-layout">
+    <main class="gallery">
+        <section class="filter-container">
+            <div class="filter main-layout flex space-between align-center">
+                <form action="">
+                    <input type="text" placeholder="Search with keyword">
+                </form>
+                <div class="filter-keys flex">
+                    <p>keyword</p>
+                    <p>keyword</p>
+                    <p>keyword</p>
+                    <p>keyword</p>
+                    <p>keyword</p>
+                </div>
+            </div>
+        </section>
+        <section class="main-gallery">
+            <div class="gallery-container main-layout">
+                <!------- images render here ------->
+            </div>
         </section>
 
+    </main class="gallery">
+
+    <main class="editor">
+        <h1>ready to render</h1>
         <section class="editor main-layout">
         </section>
-
     </main>
 
     <footer class="flex col align-center justify-center">
-        <h1>MEME</h1>
-        <h2>All rights reserved</h2>
+        <img src="Images/Logo/Logo.png" alt="">
+        <p>All rights reserved</p>
 
     </footer>
 
+    <script src="js/services/editor.service.js"></script>
+    <script src="js/editor.controller.js"></script>
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
 
 </body>
 

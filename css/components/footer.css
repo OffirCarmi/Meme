@@ -1,13 +1,11 @@
 footer {
     color: var(--white);
+    background-color: var(--brand);
+    height: 210px;
 }
 
-footer h1 {
-    font-size: 1.1875rem;
-    margin-bottom: 0.5em;
-}
 
-footer h2 {
-    font-size: 1rem;
-    font-weight: 400;
+
+footer img {
+    height: 30%;
 }

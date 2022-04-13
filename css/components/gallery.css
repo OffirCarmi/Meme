@@ -1,0 +1,31 @@
+.gallery .filter {
+    height: 100px;
+    background-color: var(--white);
+}
+
+.gallery .main-gallery {
+    margin: 0 auto;
+}
+
+.gallery .gallery-container {
+    margin-top: 1.05em;
+    margin-bottom: 1.05em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(490px, 1fr));
+    grid-gap: 20px;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.gallery .gallery-container img {
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.gallery .gallery-container img:hover {
+    cursor: pointer;
+    outline: 8px solid var(--brand);
+
+}
