@@ -1,0 +1,13 @@
+footer {
+    color: var(--white);
+}
+
+footer h1 {
+    font-size: 1.1875rem;
+    margin-bottom: 0.5em;
+}
+
+footer h2 {
+    font-size: 1rem;
+    font-weight: 400;
+}

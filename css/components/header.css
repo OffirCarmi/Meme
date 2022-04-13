@@ -1,0 +1,33 @@
+.main-header {
+    height: 100%;
+}
+
+.main-header img {
+height: 50%;
+}
+
+.main-header ul {
+    height: 100%;
+}
+
+.main-header .main-nav li {
+    height: 100%;
+    width: 75px;
+    margin-inline-start: 1.05em;
+}
+
+/* .main-header .main-nav>*:hover {
+    width: 75px;
+    margin-inline-start: 1.05em;
+} */
+
+.main-header .main-nav a {
+    color: var(--white);
+    height: 100%;
+
+}
+
+.main-header .main-nav a:hover {
+    color: var(--black);
+
+}

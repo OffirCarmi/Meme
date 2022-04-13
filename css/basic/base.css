@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: mont, sans-serif;
+    color: var(--black);
+
+}
+
+body {
+    font-size: 1.1875rem;
+    margin: 0;
+    height: 100vh;
+}
+
+header {
+    background-color: var(--brand);
+    height: 65px;
+
+}
+
+main {
+    background-color: var(--bg);
+    flex-grow: 1;
+}
+
+img {
+    height: 100%;   
+
+}
+
+a {
+    color: var(--black);
+    font-family: mont, sans-serif;
+    text-decoration: none;
+
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+
+footer {
+    background-color: var(--brand);
+    height: 210px;
+
+}
