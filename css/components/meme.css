@@ -3,7 +3,6 @@
     margin-top: 1.05em;
 
 }
-
 /* .meme .canvas-container {
     flex-basis: 50%;
 } */
@@ -15,6 +14,7 @@
 
 
 .meme input {
+    font-family: mont, sans-serif;
     height: 60px;
     width: 100%;
     border: none;
@@ -25,7 +25,12 @@
 
 }
 
+.meme input:focus {
+    outline: 3px solid var(--brand);
+}
+
 .meme button {
+    font-family: mont, sans-serif;
     background-color: var(--white);
     height: 60px;
     width: 60px;
@@ -34,11 +39,12 @@
 }
 
 .meme button:hover {
-    background-color: var(--brand);
+    background-color: var(--brand-opc);
     color: var(--white);
 }
 
 .meme select {
+    font-family: mont, sans-serif;
     height: 60px;
     border: none;
     border-radius: 1em;

@@ -3,6 +3,23 @@
     background-color: var(--white);
 }
 
+.gallery .filter input {
+    font-family: mont, sans-serif;
+    height: 60px;
+    font-size: 1.25em;
+    border: none;
+    border-bottom: 2px solid var(--black);
+    padding-inline-start: 1em;
+}
+
+.gallery .filter input:focus {
+    outline: none;
+}
+
+.gallery .filter p{
+    margin-inline-start: 1em;
+}
+
 .gallery .main-gallery {
     margin: 0 auto;
 }
@@ -11,10 +28,11 @@
     margin-top: 1.05em;
     margin-bottom: 1.05em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(490px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(475px, 1fr));
     grid-gap: 20px;
     align-content: center;
     justify-content: center;
+    
 
 }
 
