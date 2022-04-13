@@ -1,6 +1,7 @@
 .meme {
     display: none;
     margin-top: 1.05em;
+    flex-grow: 1;
 
 }
 /* .meme .canvas-container {

@@ -26,13 +26,19 @@ function renderMeme() {
         gCtx.drawImage(toRender, 0, 0)
     }
 
-    const txt = meme.lines[0].txt
-    // drawText(txt, Math.floor(gElCanvas.width / 2), 50)
 
+    const txt = meme.lines[0].txt
+    addText(txt, Math.floor(gElCanvas.width / 2), 50)
     document.querySelector('[name=text]').value = txt
 
+}
 
-
+function addText (txt,x,y){
+    const meme = getMeme()
+    const img = getImgById(meme.selectedImgIdx)
+    gCtx.fillStyle = 'white'
+    gCtx.font = '40px impact'
+    gCtx.fillText (txt,x,y)
 }
 
 // function drawStroked(text, x, y) {
@@ -51,16 +57,16 @@ function renderMeme() {
 
 
 
-function drawText(txt, x, y) {
-    const meme = getMeme()
-    // console.log(meme);
-    // console.log(txt);
-    // console.log(x);
-    // console.log(y);
-    gCtx.font = `${meme.lines[0].size}px impact`
-    gCtx.textAlign = meme.lines[0].align
-    gCtx.fillStyle = 'white'
-    // gCtx.lineWidth = 2
-    gCtx.strokeStyle = meme.lines[0].color
-    gCtx.fillText(txt, x, y)
-}
+// function drawText(txt, x, y) {
+//     const meme = getMeme()
+//     // console.log(meme);
+//     // console.log(txt);
+//     // console.log(x);
+//     // console.log(y);
+//     gCtx.font = `${meme.lines[0].size}px impact`
+//     gCtx.textAlign = meme.lines[0].align
+//     gCtx.fillStyle = 'white'
+//     // gCtx.lineWidth = 2
+//     gCtx.strokeStyle = meme.lines[0].color
+//     gCtx.fillText(txt, x, y)
+// }
