@@ -54,31 +54,32 @@
                 <form class="meme-txt" action="">
                     <input type="text" name="txt" placeholder="Edit text" />
                 </form>
-                <section class="meme-lines flex justify-center">
+                <!-- <section class="meme-lines flex justify-center">
                     <button>swi</button>
                     <button>add</button>
                     <button>del</button>
-                </section>
+                </section> -->
                 <section class="meme-edit">
-                    <button>A+</button>
-                    <button>A-</button>
-                    <button>L</button>
-                    <button>C</button>
-                    <button>R</button>
+                    <button class="btn-switch">swi</button>
+                    <button class="btn-add">add</button>
+                    <button class="btn-remove">del</button>
+                    <button class="btn-bigger-font">A+</button>
+                    <button class="btn-smaller-font">A-</button>
+                    <button class="btn-align-left">L</button>
+                    <button class="btn-align-center">C</button>
+                    <button class="btn-align-right">R</button>
                     <select value="font" id="font" onchange="setFont(this.value)">
                         <option value="impact">Impact</option>
                         <option value="david">David</option>
                         <option value="arial">Arial</option>
                     </select>
-                    <button>STR</button>
-                    <button>FL</button>
+                    <button class="btn-stroke">STR</button>
+                    <button class="btn-fill">FL</button>
                 </section>
-                <section class="meme-emoji">
-                    emoji
-                </section>
+                <section class="meme-emoji"></section>
                 <section class="meme-actions flex space-between">
-                    <button>Share</button>
-                    <button>Download</button>
+                    <button class="btn-share">Share</button>
+                    <button class="btn-download">Download</button>
                 </section>
 
             </aside>

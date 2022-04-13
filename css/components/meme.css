@@ -1,56 +1,122 @@
 .meme {
     display: none;
     margin-top: 1.05em;
+
 }
 
-.meme .canvas-container {
-    /* flex-basis: 50%; */
-}
+/* .meme .canvas-container {
+    flex-basis: 50%;
+} */
 
-.meme aside {
-    /* flex-basis: 50%; */
+/* .meme aside {
+    flex-basis: 50%;
     width: 375px;
-}
+} */
+
 
 .meme input {
     height: 60px;
     width: 100%;
     border: none;
     border-radius: 1em;
+    font-size: 1.25em;
+    padding-inline-start: 1em;
     margin-bottom: 1em;
 
 }
 
 .meme button {
     background-color: var(--white);
-    height: 65px;
-    width: 65px;
+    height: 60px;
+    width: 60px;
     border-radius: 1em;
     border: none;
+}
+
+.meme button:hover {
+    background-color: var(--brand);
+    color: var(--white);
 }
 
 .meme select {
     height: 60px;
     border: none;
     border-radius: 1em;
-
-}
-
-.meme .meme-lines {
-    margin-bottom: 2em;
+    grid-column: 1/4;
+    grid-row: 3;
+    font-size: 1em;
+    padding-inline-start: 1em;
+    cursor: pointer;
 
 }
 
 .meme .meme-edit {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    justify-items: center;
+    grid-template-columns: repeat(5, 60px);
+    grid-template-rows: 60px 60px 60px;
+    grid-gap: 15px;
+    margin-bottom: 15px;
+}
+
+.meme .btn-switch {
+    grid-column: 2;
 
 }
 
+.meme .btn-bigger-font {
+    grid-row: 2;
+}
 
-/* .meme .meme-lines >* {
-    margin: 0 0.5em;
-    
-} */
+.meme .btn-smaller-font {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.meme .btn-align-left {
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.meme .btn-align-center {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+.meme .btn-align-right {
+    grid-row: 2;
+    grid-column: 5;
+}
+
+.meme .btn-stroke {
+    grid-row: 3;
+    grid-column: 4;
+}
+
+.meme .btn-fill {
+    grid-row: 3;
+    grid-column: 5;
+}
+
+.meme .meme-emoji {
+    height: 135px;
+    border-radius: 1em;
+    background-color: var(--white);
+    margin-bottom: 15px;
+}
+
+.meme .meme-actions {
+    gap: 15px;
+}
+
+.meme .meme-actions>* {
+    width: 100%;
+    background-color: var(--brand);
+    color: var(--white);
+    font-size: 1em;
+}
+
+.meme .meme-actions>*:hover{
+    background-color: var(--white);
+    border: 3px solid var(--brand);
+    color: var(--brand);
+}
