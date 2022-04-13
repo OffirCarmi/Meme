@@ -9,13 +9,13 @@ html {
 }
 
 body {
+    background-color: var(--bg);
     font-size: 19px;
     margin: 0;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 main {
-    background-color: var(--bg);
     flex-grow: 1;
 }
 

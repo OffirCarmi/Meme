@@ -1,6 +1,10 @@
 'use strict'
 var gImgs = _createImgs()
 
+function getImgById(id) {
+    return gImgs.find(img => img.id === id)
+}
+
 function getImgs() {
     return gImgs
 }

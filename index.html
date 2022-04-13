@@ -25,7 +25,7 @@
     <main class="gallery">
         <section class="filter-container">
             <div class="filter main-layout flex space-between align-center">
-                <form action="">
+                <form class="form-filter" action="">
                     <input type="text" placeholder="Search with keyword">
                 </form>
                 <div class="filter-keys flex">
@@ -43,11 +43,45 @@
             </div>
         </section>
 
-    </main class="gallery">
+    </main>
 
-    <main class="editor">
-        <h1>ready to render</h1>
-        <section class="editor main-layout">
+    <main class="meme">
+        <section class="meme-main main-layout flex space-evenly">
+            <div class="canvas-container flex justify-center">
+                <canvas> </canvas>
+            </div>
+            <aside class="meme-tools flex col">
+                <form class="meme-txt" action="">
+                    <input type="text" name="txt" placeholder="Edit text" />
+                </form>
+                <section class="meme-lines flex justify-center">
+                    <button>swi</button>
+                    <button>add</button>
+                    <button>del</button>
+                </section>
+                <section class="meme-edit">
+                    <button>A+</button>
+                    <button>A-</button>
+                    <button>L</button>
+                    <button>C</button>
+                    <button>R</button>
+                    <select value="font" id="font" onchange="setFont(this.value)">
+                        <option value="impact">Impact</option>
+                        <option value="david">David</option>
+                        <option value="arial">Arial</option>
+                    </select>
+                    <button>STR</button>
+                    <button>FL</button>
+                </section>
+                <section class="meme-emoji">
+                    emoji
+                </section>
+                <section class="meme-actions flex space-between">
+                    <button>Share</button>
+                    <button>Download</button>
+                </section>
+
+            </aside>
         </section>
     </main>
 
@@ -57,8 +91,8 @@
 
     </footer>
 
-    <script src="js/services/editor.service.js"></script>
-    <script src="js/editor.controller.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/gallery.controller.js"></script>
 
