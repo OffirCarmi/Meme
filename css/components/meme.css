@@ -4,6 +4,7 @@
     flex-grow: 1;
 
 }
+
 /* .meme .canvas-container {
     flex-basis: 50%;
 } */
@@ -14,7 +15,7 @@
 } */
 
 
-.meme input {
+.meme .meme-txt input  {
     font-family: mont, sans-serif;
     height: 60px;
     width: 100%;
@@ -22,11 +23,11 @@
     border-radius: 1em;
     font-size: 1.25em;
     padding-inline-start: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 15px;
 
 }
 
-.meme input:focus {
+.meme .meme-txt input:focus {
     outline: 3px solid var(--brand);
 }
 
@@ -37,11 +38,19 @@
     width: 60px;
     border-radius: 1em;
     border: none;
+    font-size: 1em;
+
 }
 
 .meme button:hover {
     background-color: var(--brand-opc);
     color: var(--white);
+}
+
+.meme .meme-actions a:hover {
+    background-color: var(--white);
+    border: 3px solid var(--brand);
+    color: var(--brand);
 }
 
 .meme select {
@@ -54,6 +63,8 @@
     font-size: 1em;
     padding-inline-start: 1em;
     cursor: pointer;
+    font-size: 1em;
+
 
 }
 
@@ -63,6 +74,19 @@
     grid-template-rows: 60px 60px 60px;
     grid-gap: 15px;
     margin-bottom: 15px;
+}
+
+.meme .meme-edit .color-input input {
+    /* font-family: mont, sans-serif; */
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 1em;
+    font-size: 1.25em;
+    padding-inline-start: 1em;
+    margin-bottom: 15px;
+    /* display:none; */
+
 }
 
 .meme .btn-switch {
@@ -115,15 +139,12 @@
     gap: 15px;
 }
 
-.meme .meme-actions>* {
+.meme .meme-actions a {
+    height: 60px;
+    border-radius: 1em;
     width: 100%;
     background-color: var(--brand);
     color: var(--white);
     font-size: 1em;
-}
 
-.meme .meme-actions>*:hover{
-    background-color: var(--white);
-    border: 3px solid var(--brand);
-    color: var(--brand);
 }

@@ -57,32 +57,33 @@
             <aside class="meme-tools flex col">
 
                 <form class="meme-txt" action="">
-                    <input type="text" name="text" placeholder="Add new text" autocomplete="off" />
+                    <!-- onchange="onSetLineTxt()" -->
+                    <input type="text" name="text" placeholder="Add new text" autocomplete="off"/>
                 </form>
 
                 <section class="meme-edit">
                     <button class="btn-switch">swi</button>
                     <button class="btn-add">add</button>
                     <button class="btn-remove">del</button>
-                    <button class="btn-bigger-font">A+</button>
-                    <button class="btn-smaller-font">A-</button>
-                    <button class="btn-align-left">L</button>
-                    <button class="btn-align-center">C</button>
-                    <button class="btn-align-right">R</button>
-                    <select value="font" id="font" onchange="setFont(this.value)">
+                    <button class="btn-bigger-font" onclick="onBiggerFont()">A+</button>
+                    <button class="btn-smaller-font" onclick="onSmallerFont()">A-</button>
+                    <button class="btn-align-left" onclick="onSetAlign('left')">L</button>
+                    <button class="btn-align-center" onclick="onSetAlign('center')">C</button>
+                    <button class="btn-align-right" onclick="onSetAlign('right')">R</button>
+                    <select value="font" id="font" onchange="OnSetFont(this.value)">
                         <option value="impact">Impact</option>
                         <option value="david">David</option>
                         <option value="arial">Arial</option>
                     </select>
-                    <button class="btn-stroke">STR</button>
-                    <button class="btn-fill">FL</button>
+                    <button class="color-input btn-stroke">STR</button>
+                    <button class="color-input btn-fill">FL</button>
                 </section>
 
                 <section class="meme-emoji"></section>
 
                 <section class="meme-actions flex space-between">
-                    <button class="btn-share">Share</button>
-                    <button class="btn-download">Download</button>
+                    <a href="#" class="flex justify-center align-center">Share</a>
+                    <a href="#" class="flex justify-center align-center" onclick="downloadCanvas(this)" download="memegen">Download</a>
                 </section>
 
 
