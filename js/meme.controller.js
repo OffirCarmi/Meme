@@ -3,11 +3,10 @@ const memeFont = new FontFace('impact', 'url(/fonts/Impact.ttf)')
 
 var gElCanvas
 var gCtx
-var gTextBorder
 var gXPos
 var gYPos
+var gLineIdx
 
-// var gPos = {x,y}
 
 
 function renderCanvas(id) {
@@ -20,7 +19,9 @@ function renderCanvas(id) {
     const elInput = document.querySelector('[name=text]')
     elInput.addEventListener('keyup', onSetLineTxt)
 
-    document.querySelector('[name=text]').value = meme.lines[0].txt
+    gLineIdx = 0
+
+    document.querySelector('[name=text]').value = meme.lines[gLineIdx].txt
     renderMeme()
 
 }
@@ -52,45 +53,52 @@ function renderCanvas(id) {
 
 
 function renderMeme() {
-    const memeData = getMeme()
-    const img = getImgById(memeData.selectedImgIdx)
+    const meme = getMeme()
+    const img = getImgById(meme.selectedImgIdx)
 
-    const meme = new Image()
-    meme.src = img.url
-    meme.onload = function () {
-        gCtx.drawImage(meme, 0, 0)
+    const memeImg = new Image()
+    memeImg.src = img.url
+    memeImg.onload = function () {
+        gCtx.drawImage(memeImg, 0, 0)
         strokedText()
+        createBorder()
+
     }
 
 }
 
 function strokedText() {
-    const memeData = getMeme()
-    const txt = memeData.lines[0].txt
-    const txtWidth = gCtx.measureText(txt).width
-    const canvasWidth = gElCanvas.width
+    const meme = getMeme()
 
-    console.log(txtWidth);
-    console.log(canvasWidth);
-    calcXPos(txt)
-    calcYPos()
+    meme.lines.forEach(line => {
+        const txt = line.txt
+        calcXPos(txt)
+        calcYPos()
 
-    gCtx.font = `${memeData.lines[0].size}px ${memeData.lines[0].font}`
-    gCtx.strokeStyle = memeData.lines[0].strokeColor
-    gCtx.lineWidth = 8
-    gCtx.strokeText(txt, gXPos, gYPos)
-    gCtx.fillStyle = memeData.lines[0].fillColor
-    gCtx.fillText(txt, gXPos, gYPos)
 
+        gCtx.font = `${line.size}px ${line.font}`
+        gCtx.strokeStyle = line.strokeColor
+        gCtx.lineWidth = 8
+        gCtx.strokeText(txt, line.posX, line.posY)
+        gCtx.fillStyle = line.fillColor
+        gCtx.fillText(txt, line.posX, line.posY)
+
+    })
+    createBorder()
 
 }
 
-function createBorder(txt) {
+function createBorder() {
+
+    const memeData = getMeme()
+    const txt = memeData.lines[gLineIdx].txt
     if (!txt) return
-    gTextBorder = { width: (gCtx.measureText(txt).width + 20), height: (memeData.lines[0].size + 15) }
+    const txtWidth = gCtx.measureText(txt).width
+    const fontSize = memeData.lines[gLineIdx].size
+    const textBorder = { width: (txtWidth + 10), height: (fontSize + 10) }
     gCtx.strokeStyle = 'white'
-    gCtx.lineWidth = 5
-    gCtx.strokeRect(10, 10, gTextBorder.width, gTextBorder.height)
+    gCtx.lineWidth = 2
+    gCtx.strokeRect(gXPos, gYPos - fontSize, textBorder.width, textBorder.height)
 
 }
 
@@ -98,6 +106,38 @@ function onSetLineTxt() {
     const txt = document.querySelector('[name=text]').value
     setLineTxt(txt)
     renderMeme()
+
+}
+
+function onSwitchLine() {
+    const meme = getMeme()
+    if (!meme.lines[1]) return
+
+    switchLine()
+    if (gLineIdx === 0) gLineIdx = 1
+    else gLineIdx = 0
+    renderMeme()
+    renderEditOpts()
+
+
+}
+
+function onAddLine() {
+    if (gLineIdx === 1) return
+    addLine()
+    renderMeme()
+    gLineIdx++
+    renderEditOpts()
+
+}
+
+function renderEditOpts() {
+    const meme = getMeme()
+    document.querySelector('[name=text]').value = meme.lines[gLineIdx].txt
+    document.querySelector('[name=font]').value = meme.lines[gLineIdx].font
+    document.querySelector('[name=stroke-color]').value = meme.lines[gLineIdx].strokeColor
+    document.querySelector('[name=fill-color]').value = meme.lines[gLineIdx].fillColor
+
 }
 
 function onBiggerFont() {
@@ -121,23 +161,27 @@ function calcXPos(txt) {
     const txtWidth = gCtx.measureText(txt).width
     const canvasWidth = gElCanvas.width
     const meme = getMeme()
-    switch (meme.lines[0].align) {
+    switch (meme.lines[gLineIdx].align) {
         case 'center':
             gXPos = (canvasWidth - txtWidth) / 2
             break
         case 'left':
-            gXPos = 20
+            gXPos = 0
             break
         case 'right':
-            gXPos = (canvasWidth - txtWidth) - 20
+            gXPos = (canvasWidth - txtWidth)
             break
     }
+
+    meme.lines[gLineIdx].posX = gXPos
 
 }
 
 function calcYPos() {
     const meme = getMeme()
-    gYPos = meme.lines[0].size + 15
+    gYPos = meme.lines[gLineIdx].size + 15
+    if (gLineIdx > 0) gYPos = gElCanvas.width - meme.lines[gLineIdx].size / 2
+    meme.lines[gLineIdx].posY = gYPos
 
 }
 
@@ -149,55 +193,32 @@ function OnSetFont(font) {
 
 }
 
-// function openColorPicker(elBtn) {
-// console.log(elBtn);
-// const strHtml = '<input type="color"></input>'
-// elBtn.innerHTML = strHtml
-// }
-
-// function addText(txt, x, y) {
-//     const meme = getMeme()
-//     const img = getImgById(meme.selectedImgIdx)
-//     gCtx.fillStyle = 'white'
-//     gCtx.font = '40px impact'
-//     gCtx.fillText(txt, x, y)
-// }
+function onSetStrokeColor() {
+    const color = document.querySelector('[name=stroke-color]').value
+    setStrokeColor(color)
+    renderMeme()
+}
 
 
-// function downloadCanvas(elLink) {
-//     const data = gElCanvas.toDataURL()
-//     elLink.href = data
-//     elLink.download = 'memegen'
-// }
+function onSetFillColor() {
+    const color = document.querySelector('[name=fill-color]').value
+    setFillColor(color)
+    renderMeme()
+}
+
+function downloadCanvas(elLink) {
+
+    const meme = getMeme()
+    const img = getImgById(meme.selectedImgIdx)
+    const memeImg = new Image()
+    memeImg.src = img.url
+    memeImg.onload = function () {
+        gCtx.drawImage(memeImg, 0, 0)
+        strokedText()
+    }
 
 
-
-// function drawStroked(text, x, y) {
-//     gCtx.font = '80px Sans-serif';
-//     gCtx.strokeStyle = 'black';
-//     gCtx.lineWidth = 8;
-//     gCtx.strokeText(text, x, y);
-//     gCtx.fillStyle = 'white';
-//     gCtx.fillText(text, x, y);
-// }
-
-
-// drawStroked("37°", 50, 150);
-
-
-
-
-
-// function drawText(txt, x, y) {
-//     const meme = getMeme()
-//     // console.log(meme);
-//     // console.log(txt);
-//     // console.log(x);
-//     // console.log(y);
-//     gCtx.font = `${meme.lines[0].size}px impact`
-//     gCtx.textAlign = meme.lines[0].align
-//     gCtx.fillStyle = 'white'
-//     // gCtx.lineWidth = 2
-//     gCtx.strokeStyle = meme.lines[0].color
-//     gCtx.fillText(txt, x, y)
-// }
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'myMemegen'
+}

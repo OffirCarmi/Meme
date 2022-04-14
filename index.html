@@ -56,34 +56,39 @@
 
             <aside class="meme-tools flex col">
 
-                <form class="meme-txt" action="">
+                <!-- <form class="meme-txt" action=""> -->
                     <!-- onchange="onSetLineTxt()" -->
                     <input type="text" name="text" placeholder="Add new text" autocomplete="off"/>
-                </form>
+                <!-- </form> -->
 
                 <section class="meme-edit">
-                    <button class="btn-switch">swi</button>
-                    <button class="btn-add">add</button>
-                    <button class="btn-remove">del</button>
+                    <button class="btn-switch" onclick="onSwitchLine()" >swi</button>
+                    <button class="btn-add" onclick="onAddLine()">add</button>
+                    <button class="btn-delete" >del</button>
                     <button class="btn-bigger-font" onclick="onBiggerFont()">A+</button>
                     <button class="btn-smaller-font" onclick="onSmallerFont()">A-</button>
                     <button class="btn-align-left" onclick="onSetAlign('left')">L</button>
                     <button class="btn-align-center" onclick="onSetAlign('center')">C</button>
                     <button class="btn-align-right" onclick="onSetAlign('right')">R</button>
-                    <select value="font" id="font" onchange="OnSetFont(this.value)">
+                    <select value="font" name="font" onchange="OnSetFont(this.value)">
                         <option value="impact">Impact</option>
                         <option value="david">David</option>
                         <option value="arial">Arial</option>
                     </select>
-                    <button class="color-input btn-stroke">STR</button>
-                    <button class="color-input btn-fill">FL</button>
+                    <button class="color-input btn-stroke">
+                         <input type="color" name="stroke-color" onchange="onSetStrokeColor()">
+                    </button>
+                    <button class="color-input btn-fill">
+                        <input type="color" name="fill-color" value="#ffffff"onchange="onSetFillColor()">
+                    </button>
                 </section>
 
                 <section class="meme-emoji"></section>
 
                 <section class="meme-actions flex space-between">
-                    <a href="#" class="flex justify-center align-center">Share</a>
+                    <a href="#" class="btn-share flex justify-center align-center">Share</a>
                     <a href="#" class="flex justify-center align-center" onclick="downloadCanvas(this)" download="memegen">Download</a>
+                    <a href="#" class="btn-save flex justify-center align-center">Save</a>
                 </section>
 
 
