@@ -1,18 +1,26 @@
 .meme {
     display: none;
-    margin-top: 20px;
+    margin: 20px 0;
     flex-grow: 1;
 
 }
 
+.meme-main {
+    gap: 40px;
+
+}
+
 /* .meme .canvas-container {
+    margin-inline-end: 20px;
     flex-basis: 50%;
 } */
 
-/* .meme aside {
-    flex-basis: 50%;
-    width: 375px;
-} */
+.meme aside {
+    /* margin-inline-start: 20px; */
+    /* flex-basis: 50%; */
+
+    width: 360px;
+}
 
 
 .meme input {
@@ -89,10 +97,15 @@
 
 }
 
-.meme .btn-switch {
+/* .meme .btn-down {
     grid-column: 2;
 
-}
+} */
+
+/* .meme .btn-switch {
+    grid-column: 2;
+
+} */
 
 .meme .btn-bigger-font {
     grid-row: 2;
@@ -156,21 +169,22 @@
     background-color: var(--bg);
     border: none;
 }
+
 .meme .meme-actions .btn-save:hover {
     cursor: not-allowed;
     background-color: var(--bg);
     border: none;
 }
 
-/* .meme .btn-switch:hover {
-    cursor: not-allowed;
-    background-color: var(--bg);
-} */
-/* .meme .btn-add:hover {
-    cursor: not-allowed;
-    background-color: var(--bg);
-} */
-.meme .btn-delete:hover {
+.meme-edit button .btn-down:hover {
     cursor: not-allowed;
     background-color: var(--bg);
 }
+.meme-edit button .btn-up:hover {
+    cursor: not-allowed;
+    background-color: var(--bg);
+}
+/* .meme .btn-delete:hover {
+    cursor: not-allowed;
+    background-color: var(--bg);
+} */

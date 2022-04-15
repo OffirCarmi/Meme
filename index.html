@@ -15,8 +15,8 @@
         <div class="main-header main-layout flex space-between align-center">
             <img src="Images/Logo/Logo.png" alt="">
             <ul class="main-nav clean-list flex">
-                <li> <a class="flex justify-center align-center" href="#">Gallery</a> </li>
-                <li> <a class="flex justify-center align-center" href="#">Memes</a> </li>
+                <li> <a class="gallery-link flex justify-center align-center" href="#" onclick="showGallery(this)">Gallery</a> </li>
+                <li> <a class="flex justify-center align-center" href="#" >Memes</a> </li>
             </ul>
         </div>
 
@@ -46,7 +46,7 @@
     </main>
 
     <main class="meme">
-        <section class="meme-main main-layout flex space-evenly">
+        <section class="meme-main main-layout flex justify-center">
 
 
             <div class="canvas-container flex justify-center">
@@ -62,9 +62,11 @@
                 <!-- </form> -->
 
                 <section class="meme-edit">
+                    <button class="btn-down" onclick="onLineDown()" >D</button>
+                    <button class="btn-up" onclick="onLineUp()" >U</button>
                     <button class="btn-switch" onclick="onSwitchLine()" >swi</button>
                     <button class="btn-add" onclick="onAddLine()">add</button>
-                    <button class="btn-delete" >del</button>
+                    <button class="btn-delete" onclick="onDeleteLine()" >del</button>
                     <button class="btn-bigger-font" onclick="onBiggerFont()">A+</button>
                     <button class="btn-smaller-font" onclick="onSmallerFont()">A-</button>
                     <button class="btn-align-left" onclick="onSetAlign('left')">L</button>

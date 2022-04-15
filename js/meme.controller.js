@@ -3,27 +3,32 @@ const memeFont = new FontFace('impact', 'url(/fonts/Impact.ttf)')
 
 var gElCanvas
 var gCtx
-var gXPos
-var gYPos
-var gLineIdx
+
+var gIdx = 0
+var gSwitchDirUp = true
 
 
 
-function renderCanvas(id) {
-    const img = getImgById(id)
-    const meme = getMeme()
+
+function renderCanvas() {
     gElCanvas = document.querySelector('canvas')
     gElCanvas.width = 495
     gElCanvas.height = 495
     gCtx = gElCanvas.getContext('2d')
-    const elInput = document.querySelector('[name=text]')
-    elInput.addEventListener('keyup', onSetLineTxt)
 
-    gLineIdx = 0
+    gIdx = 1
+    const meme = getMeme()
+    const memeTextLine = document.querySelector('[name=text]')
+    memeTextLine.addEventListener('keyup', onSetLineTxt)
+    memeTextLine.value = meme.lines[gIdx].txt
 
-    document.querySelector('[name=text]').value = meme.lines[gLineIdx].txt
     renderMeme()
+}
 
+function onSetLineTxt() {
+    const txt = document.querySelector('[name=text]').value
+    setLineTxt(txt, gIdx)
+    renderMeme()
 }
 
 // function addListeners() {
@@ -51,174 +56,200 @@ function renderCanvas(id) {
 //     gElCanvas.addEventListener('touchend', onUp)
 // }
 
-
 function renderMeme() {
     const meme = getMeme()
     const img = getImgById(meme.selectedImgIdx)
 
     const memeImg = new Image()
     memeImg.src = img.url
-    memeImg.onload = function () {
+    memeImg.onload = () => {
         gCtx.drawImage(memeImg, 0, 0)
         strokedText()
-        createBorder()
-
     }
+    renderEditOpts()
+}
+
+function renderEditOpts() {
+    const meme = getMeme()
+    document.querySelector('[name=text]').value = meme.lines[gIdx].txt
+    document.querySelector('[name=font]').value = meme.lines[gIdx].font
+    document.querySelector('[name=stroke-color]').value = meme.lines[gIdx].strokeColor
+    document.querySelector('[name=fill-color]').value = meme.lines[gIdx].fillColor
 
 }
 
 function strokedText() {
     const meme = getMeme()
 
-    meme.lines.forEach(line => {
-        const txt = line.txt
-        calcXPos(txt)
-        calcYPos()
+    meme.lines.forEach((line, idx) => {
+        let txt = line.txt
+        calcXPos(txt, idx)
+        calcYPos(idx)
 
-
+        // gCtx.textBaseline = 'alphabetic'
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.strokeStyle = line.strokeColor
         gCtx.lineWidth = 8
-        gCtx.strokeText(txt, line.posX, line.posY)
+        gCtx.strokeText(txt, line.xPos, line.yPos)
         gCtx.fillStyle = line.fillColor
-        gCtx.fillText(txt, line.posX, line.posY)
+        gCtx.fillText(txt, line.xPos, line.yPos)
 
     })
     createBorder()
 
 }
 
-function createBorder() {
+function calcXPos(txt, idx) {
+    const txtWidth = gCtx.measureText(txt).width
+    const canvasWidth = gElCanvas.width
+    const meme = getMeme()
+    let xPos = 0
 
-    const memeData = getMeme()
-    const txt = memeData.lines[gLineIdx].txt
+    switch (meme.lines[idx].align) {
+        case 'center':
+            xPos = (canvasWidth - txtWidth) / 2
+            break
+        case 'left':
+            xPos = 10
+            break
+        case 'right':
+            xPos = canvasWidth - txtWidth - 10
+            break
+    }
+
+    setXPos(xPos, idx)
+    // meme.lines[gIdx].posX = gXPos
+}
+
+function calcYPos(idx) {
+    const meme = getMeme()
+    const canvasHeight = gElCanvas.height
+    let yPos = 0
+
+    switch (idx) {
+        case 1:
+            yPos = meme.lines[idx].size + 15
+            break
+        case 2:
+            yPos = canvasHeight - 25
+            break
+        case 3:
+            yPos = canvasHeight / 2
+            break
+    }
+    setYPos(yPos, idx)
+    // if (gIdx > 0) gYPos = gElCanvas.width - meme.lines[gIdx].size / 2
+}
+
+function createBorder() {
+    if (gIdx === 0) return
+    const meme = getMeme()
+    const txt = meme.lines[gIdx].txt
     if (!txt) return
     const txtWidth = gCtx.measureText(txt).width
-    const fontSize = memeData.lines[gLineIdx].size
-    const textBorder = { width: (txtWidth + 10), height: (fontSize + 10) }
+    const fontSize = meme.lines[gIdx].size
+    const borderSize = { width: (txtWidth + 20), height: (fontSize + 20) }
+
+    gCtx.save()
+    gCtx.setLineDash([5, 3])
     gCtx.strokeStyle = 'white'
     gCtx.lineWidth = 2
-    gCtx.strokeRect(gXPos, gYPos - fontSize, textBorder.width, textBorder.height)
+    const borderX = meme.lines[gIdx].xPos - 10
+    const borderY = meme.lines[gIdx].yPos - fontSize - 5
+    gCtx.strokeRect(borderX, borderY, borderSize.width, borderSize.height)
+    gCtx.restore()
+
 
 }
 
-function onSetLineTxt() {
-    const txt = document.querySelector('[name=text]').value
-    setLineTxt(txt)
+function onLineDown() {
+    const meme = getMeme()
+    if (meme.lines[gIdx].yPos + 10 > gElCanvas.height) return
+    lineDown(gIdx)
     renderMeme()
+}
 
+function onLineUp() {
+    const meme = getMeme()
+    if (meme.lines[gIdx].yPos - 10 < 0) return
+    lineDown(gIdx)
+    renderMeme()
 }
 
 function onSwitchLine() {
+    if (linesNum === 2) return
+
     const meme = getMeme()
-    if (!meme.lines[1]) return
+    const linesNum = meme.lines.length
+    if (gIdx === linesNum - 1) gSwitchDirUp = false
+    else if (gIdx === 1) gSwitchDirUp = true
 
-    switchLine()
-    if (gLineIdx === 0) gLineIdx = 1
-    else gLineIdx = 0
+    if (gSwitchDirUp) gIdx++
+    else gIdx--
+
+    switchLine(gIdx)
     renderMeme()
-    renderEditOpts()
-
 
 }
 
 function onAddLine() {
-    if (gLineIdx === 1) return
-    addLine()
+    const meme = getMeme()
+    if (meme.lines.length === 4) return
+
+    gIdx++
+    addLine(gIdx)
     renderMeme()
-    gLineIdx++
-    renderEditOpts()
 
 }
 
-function renderEditOpts() {
-    const meme = getMeme()
-    document.querySelector('[name=text]').value = meme.lines[gLineIdx].txt
-    document.querySelector('[name=font]').value = meme.lines[gLineIdx].font
-    document.querySelector('[name=stroke-color]').value = meme.lines[gLineIdx].strokeColor
-    document.querySelector('[name=fill-color]').value = meme.lines[gLineIdx].fillColor
-
+function onDeleteLine() {
+    if (gIdx === 0) return
+    deleteLine(gIdx)
+    gIdx = 1
+    renderMeme()
 }
 
 function onBiggerFont() {
-    setBiggerFont()
+    setBiggerFont(gIdx)
     renderMeme()
 }
 
-
 function onSmallerFont() {
-    setSmallerFont()
+    setSmallerFont(gIdx)
     renderMeme()
 }
 
 function onSetAlign(val) {
-    setAlign(val)
+    setAlign(val, gIdx)
     renderMeme()
 
 }
 
-function calcXPos(txt) {
-    const txtWidth = gCtx.measureText(txt).width
-    const canvasWidth = gElCanvas.width
-    const meme = getMeme()
-    switch (meme.lines[gLineIdx].align) {
-        case 'center':
-            gXPos = (canvasWidth - txtWidth) / 2
-            break
-        case 'left':
-            gXPos = 0
-            break
-        case 'right':
-            gXPos = (canvasWidth - txtWidth)
-            break
-    }
-
-    meme.lines[gLineIdx].posX = gXPos
-
-}
-
-function calcYPos() {
-    const meme = getMeme()
-    gYPos = meme.lines[gLineIdx].size + 15
-    if (gLineIdx > 0) gYPos = gElCanvas.width - meme.lines[gLineIdx].size / 2
-    meme.lines[gLineIdx].posY = gYPos
-
-}
-
-
-
 function OnSetFont(font) {
-    setFont(font)
+    setFont(font, gIdx)
     renderMeme()
 
 }
 
 function onSetStrokeColor() {
     const color = document.querySelector('[name=stroke-color]').value
-    setStrokeColor(color)
+    setStrokeColor(color, gIdx)
     renderMeme()
 }
 
-
 function onSetFillColor() {
     const color = document.querySelector('[name=fill-color]').value
-    setFillColor(color)
+    setFillColor(color, gIdx)
     renderMeme()
 }
 
 function downloadCanvas(elLink) {
-
-    const meme = getMeme()
-    const img = getImgById(meme.selectedImgIdx)
-    const memeImg = new Image()
-    memeImg.src = img.url
-    memeImg.onload = function () {
-        gCtx.drawImage(memeImg, 0, 0)
-        strokedText()
-    }
-
+    // gIdx=0
+    deleteBorder()
 
     const data = gElCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'myMemegen'
+    addBorder()
+
 }
