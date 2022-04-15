@@ -1,24 +1,23 @@
 .gallery .filter {
-    /* display: none; */
-    height: 100px;
     background-color: var(--white);
+    margin-bottom: 25px;
+
 }
 
 .gallery .filter input {
     font-family: mont, sans-serif;
-    height: 60px;
-    font-size: 1.25em;
     border: none;
     border-bottom: 2px solid var(--black);
     padding-inline-start: 10px;
+
 }
 
 .gallery .filter input:focus {
     outline: none;
 }
 
-.gallery .filter p{
-    margin-inline-start: 1em;
+.gallery .filter-keys {
+    gap: 30px;
 }
 
 .gallery .main-gallery {
@@ -26,14 +25,11 @@
 }
 
 .gallery .gallery-container {
-    margin-top: 1.05em;
-    margin-bottom: 1.05em;
+    margin-bottom: 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
     align-content: center;
     justify-content: center;
-    
 
 }
 

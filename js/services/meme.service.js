@@ -71,14 +71,13 @@ function deleteLine(idx) {
     gMeme.lines.splice(idx)
     gMeme.selectedLineIdx = 1
 
-
 }
 
 function setBiggerFont(idx) {
     gMeme.lines[idx].size += 5
 }
 
-function setSmallerFont() {
+function setSmallerFont(idx) {
     gMeme.lines[idx].size -= 5
 
 }

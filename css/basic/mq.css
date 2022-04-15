@@ -1,0 +1,82 @@
+/* MOBILE */
+@media screen and (max-width:650px) {
+    .main-layout {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .gallery .filter {
+        flex-direction: column;
+    }
+
+    .gallery .filter input {
+        height: 60px;
+        font-size: 20px;
+        padding-top: 20px;
+    }
+
+    .gallery .filter .filter-keys p {
+        font-size: 16px;
+    }
+
+    .gallery .filter .filter-keys .for-large-only {
+        display: none;
+    }
+
+    .gallery .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .meme-main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .meme-tools {
+        margin: 0 auto;
+    }
+
+    .meme .meme-emoji {
+        height: 80px;
+    }
+}
+
+
+/* DESKTOP */
+@media (min-width:650px) {
+    .main-layout {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    .gallery .filter {
+        flex-direction: row;
+        height: 100px;
+
+    }
+
+    .gallery .filter input {
+        height: 40px;
+        font-size: 24px;
+    }
+
+    .gallery .filter .filter-keys p {
+        font-size: 18px;
+    }
+
+    .gallery .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .meme-main {
+        flex-direction: row;
+        gap: 40px;
+
+    }
+
+    .meme .meme-emoji {
+        height: 135px;
+    }
+
+
+}

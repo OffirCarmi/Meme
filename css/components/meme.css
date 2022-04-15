@@ -5,11 +5,6 @@
 
 }
 
-.meme-main {
-    gap: 40px;
-
-}
-
 /* .meme .canvas-container {
     margin-inline-end: 20px;
     flex-basis: 50%;
@@ -142,7 +137,6 @@
 }
 
 .meme .meme-emoji {
-    height: 135px;
     border-radius: 1em;
     background-color: var(--white);
     margin-bottom: 15px;
