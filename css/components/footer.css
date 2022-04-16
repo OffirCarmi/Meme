@@ -4,7 +4,15 @@ footer {
     height: 180px;
 }
 
+footer .logo {
+    height: 30%;
+    margin: 15px 0;
+}
 
 footer img {
-    height: 30%;
+    height: 100%;
+}
+
+footer p {
+    margin: 0 auto;
 }

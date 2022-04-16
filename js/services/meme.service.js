@@ -2,7 +2,7 @@
 
 var gMeme = {
     selectedImgIdx: null,
-    selectedLineIdx: 1,
+    selectedLineIdx: 0,
     lines: [
         {
             txt: 'Edit text',
@@ -38,14 +38,13 @@ function setYPos(pos, idx) {
 }
 
 function lineDown(idx) {
-    console.log('enter');
-    gMeme.lines[idx].yPos += 10
+    gMeme.lines[idx].yPos -= 20
     console.log(gMeme.lines[idx].yPos);
 
 }
 
 function lineUp(idx) {
-    gMeme.lines[idx].yPos -= 10
+    gMeme.lines[idx].yPos -= 20
 
 }
 

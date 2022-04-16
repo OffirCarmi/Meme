@@ -14,7 +14,7 @@ function renderCanvas() {
     console.log(window.innerWidth);
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 640) {
         gElCanvas.width = 200
         gElCanvas.height = 200
     } else {
@@ -172,15 +172,15 @@ function createBorder() {
 
 function onLineDown() {
     const meme = getMeme()
-    if (meme.lines[gIdx].yPos + 10 > gElCanvas.height) return
+    if (meme.lines[gIdx].yPos + 50 > gElCanvas.height) return
     lineDown(gIdx)
     renderMeme()
 }
 
 function onLineUp() {
     const meme = getMeme()
-    if (meme.lines[gIdx].yPos - 10 < 0) return
-    lineDown(gIdx)
+    if (meme.lines[gIdx].yPos - 50 < 0) return
+    lineUp(gIdx)
     renderMeme()
 }
 
