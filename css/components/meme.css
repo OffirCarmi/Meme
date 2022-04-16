@@ -162,12 +162,12 @@
     border: none;
 }
 
-.meme-edit button .btn-down:hover {
+.meme-edit  .btn-down:hover {
     cursor: not-allowed;
     background-color: var(--bg);
 }
 
-.meme-edit button .btn-up:hover {
+.meme-edit .btn-up:hover {
     cursor: not-allowed;
     background-color: var(--bg);
 }

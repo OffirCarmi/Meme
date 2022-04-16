@@ -39,12 +39,11 @@ function setYPos(pos, idx) {
 
 function lineDown(idx) {
     gMeme.lines[idx].yPos -= 20
-    console.log(gMeme.lines[idx].yPos);
 
 }
 
 function lineUp(idx) {
-    gMeme.lines[idx].yPos -= 20
+    gMeme.lines[idx].yPos += 20
 
 }
 

@@ -179,7 +179,7 @@ function onLineDown() {
 
 function onLineUp() {
     const meme = getMeme()
-    if (meme.lines[gIdx].yPos - 50 < 0) return
+    if (meme.lines[gIdx].yPos - 10 < 0) return
     lineUp(gIdx)
     renderMeme()
 }
