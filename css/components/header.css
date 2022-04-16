@@ -8,8 +8,9 @@ header {
     height: 100%;
 }
 
-.main-header img {
-height: 50%;
+.main-header .logo {
+    height: 50%;
+    cursor: pointer;
 }
 
 .main-header ul {
@@ -18,14 +19,15 @@ height: 50%;
 
 .main-header .main-nav li {
     height: 100%;
-    width: 75px;
-    margin-inline-start: 1.05em;
+    min-width: 75px;
+    margin-inline-start: 40px;
 }
 
-/* .main-header .main-nav>*:hover {
-    width: 75px;
-    margin-inline-start: 1.05em;
-} */
+
+.main-header .main-nav li:hover {
+    color: var(--black);
+
+}
 
 .main-header .main-nav a {
     color: var(--white);
@@ -33,7 +35,16 @@ height: 50%;
 
 }
 
-.main-header .main-nav a:hover {
-    color: var(--black);
 
+.main-header .main-nav a.active {
+    color: var(--black);
+    box-shadow: inset 0px -5px 0;
+
+}
+
+.main-header .btn-toggle-menu {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: 800;
 }

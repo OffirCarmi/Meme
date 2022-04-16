@@ -41,6 +41,6 @@
 
 .gallery .gallery-container img:hover {
     cursor: pointer;
-    outline: 8px solid var(--brand);
+    outline: 5px solid var(--brand);
 
 }

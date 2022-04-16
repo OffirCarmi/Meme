@@ -5,16 +5,8 @@
 
 }
 
-/* .meme .canvas-container {
-    margin-inline-end: 20px;
-    flex-basis: 50%;
-} */
-
 .meme aside {
-    /* margin-inline-start: 20px; */
-    /* flex-basis: 50%; */
-
-    width: 360px;
+    max-width: 360px;
 }
 
 
@@ -174,10 +166,12 @@
     cursor: not-allowed;
     background-color: var(--bg);
 }
+
 .meme-edit button .btn-up:hover {
     cursor: not-allowed;
     background-color: var(--bg);
 }
+
 /* .meme .btn-delete:hover {
     cursor: not-allowed;
     background-color: var(--bg);

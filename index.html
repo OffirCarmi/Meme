@@ -13,11 +13,15 @@
 
     <header>
         <div class="main-header main-layout flex space-between align-center">
-            <img src="Images/Logo/Logo.png" alt="">
+            <div class="logo" onclick="showGallery()">
+                <img src="Images/Logo/Logo.png" alt="">
+            </div>
             <ul class="main-nav clean-list flex">
-                <li> <a class="gallery-link flex justify-center align-center" href="#" onclick="showGallery(this)">Gallery</a> </li>
-                <li> <a class="flex justify-center align-center" href="#" >Memes</a> </li>
+                <li> <a class="gallery-link flex justify-center align-center active" href="#"
+                        onclick="showGallery(this)">Gallery</a> </li>
+                <li> <a class="saved-link flex justify-center align-center" href="#"> Saved</a> </li>
             </ul>
+            <button class="btn-toggle-menu" onclick="toggleMenu()"></button>
         </div>
 
     </header>
@@ -49,25 +53,17 @@
     <main class="meme">
         <section class="meme-main main-layout flex justify-center">
 
-
-            <div class="canvas-container flex">
-                <canvas> </canvas>
-            </div>
-
+            <canvas> </canvas>
 
             <aside class="meme-tools flex col">
 
-                <!-- <form class="meme-txt" action=""> -->
-                    <!-- onchange="onSetLineTxt()" -->
-                    <input type="text" name="text" placeholder="Add new text" autocomplete="off"/>
-                <!-- </form> -->
-
+                <input type="text" name="text" placeholder="Add new text" autocomplete="off" />
                 <section class="meme-edit">
-                    <button class="btn-down" onclick="onLineDown()" >D</button>
-                    <button class="btn-up" onclick="onLineUp()" >U</button>
-                    <button class="btn-switch" onclick="onSwitchLine()" >swi</button>
+                    <button class="btn-down" onclick="onLineDown()">D</button>
+                    <button class="btn-up" onclick="onLineUp()">U</button>
+                    <button class="btn-switch" onclick="onSwitchLine()">swi</button>
                     <button class="btn-add" onclick="onAddLine()">add</button>
-                    <button class="btn-delete" onclick="onDeleteLine()" >del</button>
+                    <button class="btn-delete" onclick="onDeleteLine()">del</button>
                     <button class="btn-bigger-font" onclick="onBiggerFont()">A+</button>
                     <button class="btn-smaller-font" onclick="onSmallerFont()">A-</button>
                     <button class="btn-align-left" onclick="onSetAlign('left')">L</button>
@@ -79,24 +75,24 @@
                         <option value="arial">Arial</option>
                     </select>
                     <button class="color-input btn-stroke">
-                         <input type="color" name="stroke-color" onchange="onSetStrokeColor()">
+                        <input type="color" name="stroke-color" onchange="onSetStrokeColor()">
                     </button>
                     <button class="color-input btn-fill">
-                        <input type="color" name="fill-color" value="#ffffff"onchange="onSetFillColor()">
+                        <input type="color" name="fill-color" value="#ffffff" onchange="onSetFillColor()">
                     </button>
                 </section>
-
                 <section class="meme-emoji"></section>
-
                 <section class="meme-actions flex space-between">
                     <a href="#" class="btn-share flex justify-center align-center">Share</a>
-                    <a href="#" class="flex justify-center align-center" onclick="downloadCanvas(this)" download="memegen">Download</a>
+                    <a href="#" class="flex justify-center align-center" onclick="downloadCanvas(this)"
+                        download="memegen">Download</a>
                     <a href="#" class="btn-save flex justify-center align-center">Save</a>
                 </section>
 
-
             </aside>
+
         </section>
+
     </main>
 
     <footer class="flex col align-center justify-center">
