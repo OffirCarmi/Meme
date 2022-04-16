@@ -1,7 +1,4 @@
 'use strict'
-// var gElSavedCanvas = document.querySelector('canvas.saved-canvas')
-// var ctx = gElSavedCanvas.getContext('2d')
-
 
 function showSaved() {
     document.querySelector('.saved-link').classList.add('active')

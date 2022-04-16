@@ -92,7 +92,6 @@ function strokedText() {
         calcXPos(txt, idx)
         calcYPos(idx)
 
-        // gCtx.textBaseline = 'alphabetic'
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.strokeStyle = line.strokeColor
         gCtx.lineWidth = 8
@@ -101,7 +100,7 @@ function strokedText() {
         gCtx.fillText(txt, line.xPos, line.yPos)
 
     })
-    // createBorder()
+    createBorder()
 
 }
 
@@ -124,7 +123,6 @@ function calcXPos(txt, idx) {
     }
 
     setXPos(xPos, idx)
-    // meme.lines[gIdx].posX = gXPos
 }
 
 function calcYPos(idx) {
@@ -257,17 +255,9 @@ function onSetFillColor() {
 }
 
 function downloadCanvas(elLink) {
-    // addlineforDownload()
-    // gIdx++
-    // switchLine(gIdx)
-    // renderMeme()
-    // gIdx=0
-    // deleteBorder()
-
-    const data = gElCanvas.toDataURL()
+const data = gElCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'myMemegen'
-    // addBorder()
 
 }
 

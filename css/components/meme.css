@@ -71,7 +71,6 @@
 }
 
 .meme .meme-edit .color-input input {
-    /* font-family: mont, sans-serif; */
     height: 50px;
     width: 100%;
     border: none;
@@ -80,19 +79,8 @@
     padding-inline-start: 1em;
     margin-bottom: 15px;
     cursor: pointer;
-    /* display:none; */
 
 }
-
-/* .meme .btn-down {
-    grid-column: 2;
-
-} */
-
-/* .meme .btn-switch {
-    grid-column: 2;
-
-} */
 
 .meme .btn-bigger-font {
     grid-row: 2;
@@ -148,15 +136,6 @@
 
 }
 
-
-
-
-/* .meme .meme-actions .btn-save:hover {
-    cursor: not-allowed;
-    background-color: var(--bg);
-    border: none;
-} */
-
 .meme-edit  .btn-down:hover {
     cursor: not-allowed;
     background-color: var(--bg);
@@ -166,8 +145,3 @@
     cursor: not-allowed;
     background-color: var(--bg);
 }
-
-/* .meme .btn-delete:hover {
-    cursor: not-allowed;
-    background-color: var(--bg);
-} */
