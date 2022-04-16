@@ -22,15 +22,20 @@ function onImgSelect(id) {
     elMeme.style.display = 'block'
 
     updateImgIdx(id)
-    renderCanvas()
+    renderCanvas('meme')
 }
 
-function showGallery(elLink) {
+function showGallery() {
     document.querySelector('.gallery-link').classList.add('active')
+    document.querySelector('.saved-link').classList.remove('active')
+
     const elGallery = document.querySelector('.gallery')
     const elMeme = document.querySelector('.meme')
+    const elSaved = document.querySelector('.saved')
     elGallery.style.display = 'block'
     elMeme.style.display = 'none'
+    elSaved.style.display = 'none'
+
 }
 
 function toggleMenu() {

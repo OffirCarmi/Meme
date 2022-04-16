@@ -10,8 +10,7 @@ var gSwitchDirUp = true
 
 
 
-function renderCanvas() {
-    console.log(window.innerWidth);
+function renderCanvas(val, idx) {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     if (window.innerWidth < 640) {
@@ -22,15 +21,12 @@ function renderCanvas() {
         gElCanvas.height = 495
     }
 
-    const meme = getMeme()
-    const memeTextLine = document.querySelector('[name=text]')
-    memeTextLine.addEventListener('keyup', onSetLineTxt)
-    memeTextLine.value = meme.lines[gIdx].txt
+        const meme = getMeme()
+        const memeTextLine = document.querySelector('[name=text]')
+        memeTextLine.addEventListener('keyup', onSetLineTxt)
+        memeTextLine.value = meme.lines[gIdx].txt
+        renderMeme()
 
-    renderMeme()
-}
-
-function resizeCanvas() {
 
 }
 
@@ -273,4 +269,8 @@ function downloadCanvas(elLink) {
     elLink.download = 'myMemegen'
     // addBorder()
 
+}
+
+function onSaveMeme() {
+    saveMeme()
 }

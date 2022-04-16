@@ -1,0 +1,24 @@
+.saved {
+    margin: 0 auto;
+}
+
+.saved .saved-container {
+    margin: 25px 0;
+    display: grid;
+    grid-gap: 20px;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.saved .saved-container img {
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.saved .saved-container img:hover {
+    cursor: pointer;
+    outline: 5px solid var(--black);
+
+}

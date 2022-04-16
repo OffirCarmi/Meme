@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="Images/favicon_io/favicon.ico" type="image/x-icon"> 
+    <link rel="icon" href="Images/favicon_io/favicon.ico" type="image/x-icon">
 </head>
 
 <body class="flex col" onload="onInit()">
@@ -20,8 +20,8 @@
             <button class="btn-toggle-menu" onclick="toggleMenu()"></button>
             <ul class="main-nav clean-list flex">
                 <li> <a class="gallery-link flex justify-center align-center active" href="#"
-                        onclick="showGallery(this)">Gallery</a> </li>
-                <li> <a class="saved-link flex justify-center align-center" href="#"> Saved</a> </li>
+                        onclick="showGallery()">Gallery</a> </li>
+                <li> <a  class="saved-link flex justify-center align-center" onclick="showSaved()" class="saved-link flex justify-center align-center" href="#"> Saved</a> </li>
             </ul>
         </div>
 
@@ -43,13 +43,21 @@
             </div>
         </section>
         <section class="main-gallery">
-            <div class="gallery-container main-layout">
+            <div class="gallery-container main-layout flex justify-center">
                 <!------- images render here ------->
             </div>
         </section>
 
     </main>
 
+    <main class="saved">
+        <div class="saved-container main-layout">
+            <!------- saved memes render here ------->
+        </div>
+
+        <!-- <canvas class="saved-canvas"></canvas> -->
+
+    </main>
 
     <main class="meme">
         <section class="meme-main main-layout flex justify-center">
@@ -60,25 +68,34 @@
 
                 <input type="text" name="text" placeholder="Add new text" autocomplete="off" />
                 <section class="meme-edit">
-                    <button class="btn-down" onclick="onLineDown()">D</button>
-                    <button class="btn-up" onclick="onLineUp()">U</button>
-                    <button class="btn-switch" onclick="onSwitchLine()">swi</button>
-                    <button class="btn-add" onclick="onAddLine()">add</button>
-                    <button class="btn-delete" onclick="onDeleteLine()">del</button>
-                    <button class="btn-bigger-font" onclick="onBiggerFont()">A+</button>
-                    <button class="btn-smaller-font" onclick="onSmallerFont()">A-</button>
-                    <button class="btn-align-left" onclick="onSetAlign('left')">L</button>
-                    <button class="btn-align-center" onclick="onSetAlign('center')">C</button>
-                    <button class="btn-align-right" onclick="onSetAlign('right')">R</button>
+                    <button type="submit" class="btn-down" onclick="onLineDown()">D</button>
+                    <button type="submit" class="btn-up" onclick="onLineUp()">U</button>
+                    <button type="submit" class="btn-switch" onclick="onSwitchLine()"><img
+                            src="Images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
+                            alt="submit"></button>
+                    <button type="submit" class="btn-add" onclick="onAddLine()"><img src="Images/ICONS/add.png"
+                            alt="submit"></button>
+                    <button type="submit" class="btn-delete" onclick="onDeleteLine()"><img src="Images/ICONS/trash.png"
+                            alt="submit"></button>
+                    <button type="submit" class="btn-bigger-font" onclick="onBiggerFont()"><img
+                            src="Images/ICONS/increase font - icon.png" alt="submit"></button>
+                    <button type="submit" class="btn-smaller-font" onclick="onSmallerFont()"><img
+                            src="Images/ICONS/decrease font - icon.png" alt="submit"></button>
+                    <button type="submit" class="btn-align-left" onclick="onSetAlign('left')"><img
+                            src="Images/ICONS/align-to-left.png" alt="submit"></button>
+                    <button type="submit" class="btn-align-center" onclick="onSetAlign('center')"><img
+                            src="Images/ICONS/center-text-alignment.png" alt="submit"></button>
+                    <button type="submit" class="btn-align-right" onclick="onSetAlign('right')"><img
+                            src="Images/ICONS/align-to-right.png" alt="submit"></button>
                     <select value="font" name="font" onchange="OnSetFont(this.value)">
                         <option value="impact">Impact</option>
                         <option value="david">David</option>
                         <option value="arial">Arial</option>
                     </select>
-                    <button class="color-input btn-stroke">
+                    <button class="color-input btn-stroke" title="Stroke color">
                         <input type="color" name="stroke-color" onchange="onSetStrokeColor()">
                     </button>
-                    <button class="color-input btn-fill">
+                    <button class="color-input btn-fill" title="Fill color">
                         <input type="color" name="fill-color" value="#ffffff" onchange="onSetFillColor()">
                     </button>
                 </section>
@@ -87,7 +104,7 @@
                     <!-- <a href="#" class="btn-share flex justify-center align-center">Share</a> -->
                     <a href="#" class="flex justify-center align-center" onclick="downloadCanvas(this)"
                         download="memegen">Download</a>
-                    <a href="#" class="btn-save flex justify-center align-center">Save</a>
+                    <a href="#" class="btn-save flex justify-center align-center" onclick="onSaveMeme()">Save</a>
                 </section>
 
             </aside>
@@ -104,9 +121,12 @@
 
     </footer>
 
+    <script src="js/services/storage.service.js"></script>
+    <!-- <script src="js/services/saved.service.js"></script> -->
     <script src="js/services/meme.service.js"></script>
-    <script src="js/meme.controller.js"></script>
     <script src="js/services/gallery.service.js"></script>
+    <script src="js/meme.controller.js"></script>
+    <script src="js/saved.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
 
 </body>

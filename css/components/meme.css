@@ -150,17 +150,12 @@
 
 
 
-.meme .meme-actions .btn-share:hover {
-    cursor: not-allowed;
-    background-color: var(--bg);
-    border: none;
-}
 
-.meme .meme-actions .btn-save:hover {
+/* .meme .meme-actions .btn-save:hover {
     cursor: not-allowed;
     background-color: var(--bg);
     border: none;
-}
+} */
 
 .meme-edit  .btn-down:hover {
     cursor: not-allowed;

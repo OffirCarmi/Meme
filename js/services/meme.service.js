@@ -1,4 +1,5 @@
 'use strict'
+var savedMemes = []
 
 var gMeme = {
     selectedImgIdx: null,
@@ -88,7 +89,14 @@ function setFillColor(color, idx) {
     gMeme.lines[idx].fillColor = color
 }
 
-function     addlineforDownload() {
+function saveMeme() {
+    savedMemes = (!loadFromStorage('savedMemes')) ? [] : loadFromStorage('savedMemes')
+    savedMemes.push(gMeme)
+    saveToStorage('savedMemes', savedMemes)
+
+}
+
+function addlineforDownload() {
     gMeme.lines.push({ txt: '\'', size: 50, align: 'left', strokeColor: '#000000', fillColor: '#ffffff', font: 'impact' })
 }
 
