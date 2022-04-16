@@ -13,6 +13,10 @@ header {
     cursor: pointer;
 }
 
+.main-header .logo img {
+    max-height: 100%;
+}
+
 .main-header ul {
     height: 100%;
 }
