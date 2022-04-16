@@ -11,18 +11,27 @@ var gSwitchDirUp = true
 
 
 function renderCanvas() {
+    console.log(window.innerWidth);
     gElCanvas = document.querySelector('canvas')
-    gElCanvas.width = 495
-    gElCanvas.height = 495
     gCtx = gElCanvas.getContext('2d')
+    if (window.innerWidth < 600) {
+        gElCanvas.width = 200
+        gElCanvas.height = 200
+    } else {
+        gElCanvas.width = 495
+        gElCanvas.height = 495
+    }
 
-    gIdx = 1
     const meme = getMeme()
     const memeTextLine = document.querySelector('[name=text]')
     memeTextLine.addEventListener('keyup', onSetLineTxt)
     memeTextLine.value = meme.lines[gIdx].txt
 
     renderMeme()
+}
+
+function resizeCanvas() {
+
 }
 
 function onSetLineTxt() {
@@ -65,6 +74,7 @@ function renderMeme() {
     memeImg.onload = () => {
         gCtx.drawImage(memeImg, 0, 0)
         strokedText()
+        createBorder()
     }
     renderEditOpts()
 }
@@ -95,7 +105,7 @@ function strokedText() {
         gCtx.fillText(txt, line.xPos, line.yPos)
 
     })
-    createBorder()
+    // createBorder()
 
 }
 
@@ -126,26 +136,24 @@ function calcYPos(idx) {
     const canvasHeight = gElCanvas.height
     let yPos = 0
 
-    switch (idx) {
-        case 1:
+    switch (true) {
+        case (idx === 0):
             yPos = meme.lines[idx].size + 15
             break
-        case 2:
+        case (idx === 1):
             yPos = canvasHeight - 25
             break
-        case 3:
+        case (idx > 1):
             yPos = canvasHeight / 2
             break
     }
     setYPos(yPos, idx)
-    // if (gIdx > 0) gYPos = gElCanvas.width - meme.lines[gIdx].size / 2
 }
 
 function createBorder() {
-    if (gIdx === 0) return
     const meme = getMeme()
+    if (meme.lines.length === 0 || !meme.lines[gIdx].txt) return
     const txt = meme.lines[gIdx].txt
-    if (!txt) return
     const txtWidth = gCtx.measureText(txt).width
     const fontSize = meme.lines[gIdx].size
     const borderSize = { width: (txtWidth + 20), height: (fontSize + 20) }
@@ -177,12 +185,12 @@ function onLineUp() {
 }
 
 function onSwitchLine() {
-    if (linesNum === 2) return
-
     const meme = getMeme()
     const linesNum = meme.lines.length
+    if (linesNum <= 1) return
+
     if (gIdx === linesNum - 1) gSwitchDirUp = false
-    else if (gIdx === 1) gSwitchDirUp = true
+    else if (gIdx === 0) gSwitchDirUp = true
 
     if (gSwitchDirUp) gIdx++
     else gIdx--
@@ -194,18 +202,27 @@ function onSwitchLine() {
 
 function onAddLine() {
     const meme = getMeme()
-    if (meme.lines.length === 4) return
-
-    gIdx++
-    addLine(gIdx)
+    const linesNum = meme.lines.length
+    if (linesNum === 0) gIdx = 0
+    else gIdx++
+    addLine()
+    switchLine(gIdx)
     renderMeme()
 
 }
 
 function onDeleteLine() {
-    if (gIdx === 0) return
+    const meme = getMeme()
+    let linesNum = meme.lines.length
+    if (linesNum === 0) return
     deleteLine(gIdx)
-    gIdx = 1
+    linesNum = meme.lines.length
+    if (linesNum === 0) {
+        renderMeme()
+        return
+    }
+    gIdx = 0
+    switchLine(gIdx)
     renderMeme()
 }
 
@@ -244,12 +261,16 @@ function onSetFillColor() {
 }
 
 function downloadCanvas(elLink) {
+    // addlineforDownload()
+    // gIdx++
+    // switchLine(gIdx)
+    // renderMeme()
     // gIdx=0
-    deleteBorder()
+    // deleteBorder()
 
     const data = gElCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'myMemegen'
-    addBorder()
+    // addBorder()
 
 }

@@ -5,14 +5,6 @@ var gMeme = {
     selectedLineIdx: 1,
     lines: [
         {
-            txt: '',
-            strokeColor: '#000000',
-            fillColor: '#ffffff',
-            xPos: -1000,
-            yPos: -1000,
-
-        },
-        {
             txt: 'Edit text',
             size: 50,
             align: 'left',
@@ -62,14 +54,13 @@ function switchLine(idx) {
 
 }
 
-function addLine(idx) {
-    gMeme.selectedLineIdx = idx
+function addLine() {
     gMeme.lines.push({ txt: 'Edit text', size: 50, align: 'left', strokeColor: '#000000', fillColor: '#ffffff', font: 'impact' })
+
 }
 
 function deleteLine(idx) {
-    gMeme.lines.splice(idx)
-    gMeme.selectedLineIdx = 1
+    gMeme.lines.splice(idx, 1)
 
 }
 
@@ -97,6 +88,10 @@ function setStrokeColor(color, idx) {
 
 function setFillColor(color, idx) {
     gMeme.lines[idx].fillColor = color
+}
+
+function     addlineforDownload() {
+    gMeme.lines.push({ txt: '\'', size: 50, align: 'left', strokeColor: '#000000', fillColor: '#ffffff', font: 'impact' })
 }
 
 function deleteBorder() {
